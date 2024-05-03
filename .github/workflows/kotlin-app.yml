@@ -6,7 +6,7 @@ name: Continuous Integration for kotlin app
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main" ]
+    branches: [ "main" , "feature/branch" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -36,3 +36,10 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+
+      - name: Check Java Version
+        run: java -version
+      - name: Build
+        run: gradle build
+      - name: Build with gradlew
+        run: ./gradlew build
