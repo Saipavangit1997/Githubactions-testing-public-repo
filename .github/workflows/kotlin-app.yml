@@ -43,3 +43,7 @@ jobs:
         run: gradle build
       - name: Build with gradlew
         run: ./gradlew build
+      - name: Docker version
+        run: |
+          docker -v
+          docker
