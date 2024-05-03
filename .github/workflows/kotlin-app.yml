@@ -42,7 +42,7 @@ jobs:
       - name: Change the permissions for gradlew script to execute
         run: chmod +x gradlew
       - name: Build with gradlew
-        run: ./gradlew build
+        run: ./gradlew clean build
       - name: Docker version
         run: |
           docker -v
