@@ -6,6 +6,7 @@ Note: We used start.spring.io to initalise the demo app structure for Kotiln app
 * ./gradlew test          ---> For testing      
 * ./gradlew tasks         ---> for help      
 * ./gradlew bootrun       ---> To run the app
+* ./gradlew clean build   ---> To build clean gradlew
 
 
 ## If you use empty directory for kotlin app to initiate
