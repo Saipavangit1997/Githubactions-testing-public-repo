@@ -31,11 +31,11 @@ jobs:
       - name: Check Java Version
         run: java -version
       
-     - name: Docker version
-        run: |
-          docker -v
-          docker
-          docker images -a
+      - name: Docker version
+         run: |
+           docker -v
+           docker
+           docker images -a
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
