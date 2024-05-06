@@ -12,9 +12,15 @@
           ],
         "cpu": 256,
         "memory": 512,
-        "essential": true
-      }
-    ],
+        "essential": true,
+        "portMappings": [
+            {
+              "containerPort": 8080,
+              "hostPort": 80
+            }
+          ]
+        }
+      ],
     "networkMode": "awsvpc",
     "taskRoleArn": "arn:aws:iam::543818410291:role/ECSservicerole",
     "executionRoleArn": "arn:aws:iam::543818410291:role/ECSservicerole",
