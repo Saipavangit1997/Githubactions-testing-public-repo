@@ -62,12 +62,12 @@ jobs:
         run: aws s3 ls
 
       - name: Fill in the new image ID in the Amazon ECS task definition
-      id: task-def
-      uses: aws-actions/amazon-ecs-render-task-definition@v1
-      with:
-        task-definition: ./task-definition.json
-        container-name: kotlinapp
-        image: saipavandocker2022/demo-kotlin:latest
+        id: task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: ./task-definition.json
+          container-name: kotlinapp
+          image: saipavandocker2022/demo-kotlin:latest
 
       - name: Deploy to ECS Fargate
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
