@@ -42,22 +42,33 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
 
-      - name: Check Java Version
-        run: java -version
-      - name: Change the permissions for gradlew script to execute
-        run: chmod +x gradlew
-      - name: Build with gradlew
-        run: ./gradlew build
-      - name: Docker version
-        run: |
-          docker -v
-          docker
-          docker images -a
-      - name: docker build
-        run: |
-          docker build -t saipavandocker2022/demo-kotlin:latest .
-          docker images -a
-      - name: docker login 
-        run: docker login -u ${{ secrets.dockerhubusername }} -p ${{ secrets.dockerhubpassword }}
-      - name: Docker image push to docker hub
-        run: docker push saipavandocker2022/demo-kotlin:latest
+      - name: Login to AWS
+        uses: aws-actions/configure-aws-credentials@v4
+        with: |
+          aws-region: us-east-1
+          aws-access-key-id: ${{ secrets.awsaccesskey }}
+          aws-secret-access-key: ${{ secrets.awssecretaccesskey }}
+
+      - name: Run AWS CLI command
+        run: aws s3 ls
+
+      
+    #  - name: Check Java Version
+    #    run: java -version
+    #  - name: Change the permissions for gradlew script to execute
+    #    run: chmod +x gradlew
+    #  - name: Build with gradlew
+    #    run: ./gradlew build
+    #  - name: Docker version
+    #    run: |
+    #      docker -v
+    #      docker
+    #      docker images -a
+    #  - name: docker build
+    #    run: |
+    #      docker build -t saipavandocker2022/demo-kotlin:latest .
+    #      docker images -a
+    #  - name: docker login 
+    #    run: docker login -u ${{ secrets.dockerhubusername }} -p ${{ secrets.dockerhubpassword }}
+    #  - name: Docker image push to docker hub
+    #    run: docker push saipavandocker2022/demo-kotlin:latest
