@@ -1,0 +1,27 @@
+{
+    "family": "my-kotlin-taskdef",
+    "containerDefinitions": [
+      {
+        "name": "kotlinapp",
+        "image": "saipavandocker2022/demo-kotlin:latest",
+        "environment": [
+            {
+              "name": "DOCKERHUB_TOKEN",
+              "value": "dckr_pat_ZEv85WwnaNi6nWsdX8KVMRh4yQc"
+            }
+          ],
+        "cpu": 256,
+        "memory": 512,
+        "essential": true
+      }
+    ],
+    "networkMode": "awsvpc",
+    "taskRoleArn": "arn:aws:iam::543818410291:role/ECSservicerole",
+    "executionRoleArn": "arn:aws:iam::543818410291:role/ECSservicerole",
+    "requiresCompatibilities": [
+      "FARGATE"
+    ],
+    "cpu": "256",
+    "memory": "512"
+  }
+  
