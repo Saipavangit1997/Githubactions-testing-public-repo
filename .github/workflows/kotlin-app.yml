@@ -88,7 +88,7 @@ jobs:
         id: build-image
         run: |
          docker push ${{ env.IMAGE_NAME }}:${{ github.sha }}
-         echo "image=${{ env.IMAGE_NAME }}:${{ github.sha }}" >> $OUTPUTFILE
+         echo "image=${{ env.IMAGE_NAME }}:${{ github.sha }}" >> image_output.txt
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
@@ -96,7 +96,7 @@ jobs:
         with:
           task-definition: ./task-definition.json
           container-name: kotlinapp
-          image: ${{ env.IMAGE_NAME }}:${{ github.sha }}
+          image: ${{ steps.build-image.outputs.image }}
 
       - name: Deploy to ECS Fargate
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
