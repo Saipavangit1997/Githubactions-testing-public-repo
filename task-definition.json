@@ -4,8 +4,8 @@
       {
         "name": "kotlinapp",
         "image": "saipavandocker2022/demo-kotlin:latest",
-        "cpu": 1024,
-        "memory": 3072,
+        "cpu": 2048,
+        "memory": 2048,
         "essential": true,
         "logConfiguration": {
             "logDriver": "awslogs",
@@ -30,7 +30,11 @@
     "requiresCompatibilities": [
       "FARGATE"
     ],
-    "cpu": "1 vCPU",
-    "memory": "3 GB"
+    "cpu": "2 vCPU",
+    "memory": "4 GB",
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+      }
   }
   
