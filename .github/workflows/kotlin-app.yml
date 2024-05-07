@@ -16,7 +16,7 @@ env:
   REGISTRY: saipavandocker2022
   REPOSITORY_NAME: demo-kotlin
   # github.repository as <account>/<repo>
-  IMAGE_NAME: ${{ env.REGISTRY }}/${{ env.REPOSITORY_NAME }}
+  IMAGE_NAME: $REGISTRY/$REPOSITORY_NAME
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
