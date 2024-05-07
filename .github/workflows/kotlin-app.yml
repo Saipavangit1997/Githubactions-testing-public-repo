@@ -65,8 +65,14 @@ jobs:
         run: chmod +x gradlew
       - name: Build with gradlew
         run: ./gradlew build
+      - name: Runs a custom script
+        run: |
+          ls -al
       - name: docker build
         run: |
+          echo "DOCKER_HUB_REGISTRY=$DOCKER_HUB_REGISTRY"
+          echo "IMAGE_NAME=$IMAGE_NAME"
+          echo "IMAGE_TAG=$IMAGE_TAG"
           docker build -t $DOCKER_HUB_REGISTRY/$IMAGE_NAME:$IMAGE_TAG .
           docker images -a
       
