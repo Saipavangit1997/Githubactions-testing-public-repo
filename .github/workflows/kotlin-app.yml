@@ -71,7 +71,7 @@ jobs:
       - name: Runs a custom script
         run: |
           ls -al
-          ls ./build/lib
+          ls ./build/libs
 
      # - name: docker build
      #   run: |
