@@ -4,15 +4,17 @@
       {
         "name": "kotlinapp",
         "image": "saipavandocker2022/demo-kotlin:latest",
-        "environment": [
-            {
-              "name": "DOCKERHUB_TOKEN",
-              "value": "dckr_pat_ZEv85WwnaNi6nWsdX8KVMRh4yQc"
-            }
-          ],
-        "cpu": 256,
-        "memory": 512,
+        "cpu": 1024,
+        "memory": 3072,
         "essential": true,
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+              "awslogs-group": "AmazonECSLogGroup",
+              "awslogs-region": "us-east-1",
+              "awslogs-stream-prefix": "kotlinapp"
+            }
+          },
         "portMappings": [
             {
               "containerPort": 8080,
@@ -27,7 +29,7 @@
     "requiresCompatibilities": [
       "FARGATE"
     ],
-    "cpu": "256",
-    "memory": "512"
+    "cpu": "1 vCPU",
+    "memory": "3 GB"
   }
   

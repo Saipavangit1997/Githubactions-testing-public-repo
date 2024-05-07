@@ -60,6 +60,9 @@ jobs:
 
       - name: Run AWS CLI command
         run: aws s3 ls
+      
+      - name: docker login 
+        run: docker login -u ${{ secrets.dockerhubusername }} -p ${{ secrets.dockerhubpassword }}
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
@@ -76,7 +79,6 @@ jobs:
           service: kotlinservice
           cluster: Githubactionstesting
           wait-for-service-stability: true
-          capabilities: 'CAPABILITY_AUTO_EXPAND,CAPABILITY_IAM'
 
       #- name: Change the permissions for gradlew script to execute
       #  run: chmod +x gradlew
