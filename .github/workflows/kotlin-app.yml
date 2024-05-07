@@ -75,8 +75,9 @@ jobs:
       - name: Runs a custom script
         run: |
           ls -al
-          cat /build/libs
-                    
+          cd /build/libs
+          cat /libs
+
       - name: docker build
         run: |
           docker build -t ${{ env.IMAGE_NAME }}:${{ github.sha }} .
