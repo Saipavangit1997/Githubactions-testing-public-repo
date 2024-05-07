@@ -75,7 +75,7 @@ jobs:
       - name: Runs a custom script
         run: |
           ls -al
-          
+
       - name: docker build
         run: |
           docker build -t ${{ env.IMAGE_NAME }}:${{ github.sha }} .
@@ -88,7 +88,7 @@ jobs:
         id: build-image
         run: |
          docker push ${{ env.IMAGE_NAME }}:${{ github.sha }}
-         echo "image=${{ env.IMAGE_NAME }}:${{ github.sha }} >> $OUTPUTFILE
+         echo "image=${{ env.IMAGE_NAME }}:${{ github.sha }}" >> $OUTPUTFILE
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def
