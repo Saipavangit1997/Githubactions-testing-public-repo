@@ -12,11 +12,7 @@ on:
   workflow_dispatch:
 
 env:
-  # Use docker.io for Docker Hub if empty
-  REGISTRY: saipavandocker2022
-  REPOSITORY_NAME: demo-kotlin
-  # github.repository as <account>/<repo>
-  IMAGE_NAME: $REGISTRY/$REPOSITORY_NAME
+  IMAGE_NAME: ${{ secrets.dockerhubregistry }}/${{ secrets.dockerhubreponame }} 
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
