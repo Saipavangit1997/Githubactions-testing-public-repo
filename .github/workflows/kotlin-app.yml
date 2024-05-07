@@ -96,7 +96,7 @@ jobs:
         with:
           task-definition: ./task-definition.json
           container-name: kotlinapp
-          image: ${{ steps.build-image.outputs.image }}
+          image: ${{ env.IMAGE_NAME }}:${{ github.sha }}
 
       - name: Deploy to ECS Fargate
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
