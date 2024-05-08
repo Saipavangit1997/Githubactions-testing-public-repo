@@ -105,7 +105,8 @@ jobs:
           image: ${{ env.IMAGE_NAME }}:$SHORTEN_SHA
       - name: Task definition
         run: |
-          cat task-definition.json
+          ls /home/runner/work/_temp/task-definition--*.json
+          cat $(ls /home/runner/work/_temp/task-definition--*.json | head -n 1)
       - name: Deploy to ECS Fargate
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
