@@ -75,8 +75,8 @@ jobs:
 
       - name: docker build
         run: |
-          docker build -t ${{ env.IMAGE_NAME }}:${{ GITHUB_SHA::8 }} .
-          echo "image=${{ env.IMAGE_NAME }}:${{ GITHUB_SHA::8 }}" >> $GITHUB_ENV
+          docker build -t ${{ env.IMAGE_NAME }}:${{ github.sha }}:8 .
+          echo "image=${{ env.IMAGE_NAME }}:${{ github.sha }}:8" >> $GITHUB_ENV
           echo $GITHUB_ENV
           docker images -a
       
