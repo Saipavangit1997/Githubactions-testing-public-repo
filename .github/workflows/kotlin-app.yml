@@ -102,7 +102,7 @@ jobs:
         with:
           task-definition: ./task-definition.json
           container-name: kotlinapp
-          image: ${{ env.IMAGE_NAME }}:$SHORTEN_SHA
+          image: ${{ env.IMAGE_NAME }}:${{ env.SHORTEN_SHA }}
       - name: Task definition
         run: |
           ls /home/runner/work/_temp/task-definition--*.json
