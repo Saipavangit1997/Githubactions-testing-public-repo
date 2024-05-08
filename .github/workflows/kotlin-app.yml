@@ -76,29 +76,33 @@ jobs:
       - name: docker build
         run: |
           docker build -t ${{ env.IMAGE_NAME }}:${{ github.sha }} .
+          echo "image=${{ env.IMAGE_NAME }}:${{ github.sha }}" >> image_output.txt
           docker images -a
       
       - name: docker login 
         run: docker login -u ${{ secrets.dockerhubusername }} -p ${{ secrets.dockerhubpassword }}
       
-      - name: Docker image push to docker hub
-        id: build-image
+      #- name: Docker image push to docker hub
+      #  id: build-image
+      #  run: |
+      #   docker push ${{ env.IMAGE_NAME }}:${{ github.sha }}
+      #   echo "image=${{ env.IMAGE_NAME }}:${{ github.sha }}" >> image_output.txt 
+      - name: Checking image_output.txt file
         run: |
-         docker push ${{ env.IMAGE_NAME }}:${{ github.sha }}
-         echo "image=${{ env.IMAGE_NAME }}:${{ github.sha }}" >> image_output.txt 
-      - name: Fill in the new image ID in the Amazon ECS task definition
-        id: task-def
-        uses: aws-actions/amazon-ecs-render-task-definition@v1
-        with:
-          task-definition: ./task-definition.json
-          container-name: kotlinapp
-          image: ${{ env.IMAGE_NAME }}:${{ github.sha }} 
-      - name: Deploy to ECS Fargate
-        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-        with:
-          task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: kotlinservice
-          cluster: Githubactionstesting
-          wait-for-service-stability: true 
-
+          ls -al
+      #- name: Fill in the new image ID in the Amazon ECS task definition
+      #  id: task-def
+      #  uses: aws-actions/amazon-ecs-render-task-definition@v1
+      #  with:
+      #    task-definition: ./task-definition.json
+      #    container-name: kotlinapp
+      #    image: ${{ env.IMAGE_NAME }}:${{ github.sha }} 
+      #- name: Deploy to ECS Fargate
+      #  uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      #  with:
+      #    task-definition: ${{ steps.task-def.outputs.task-definition }}
+      #    service: kotlinservice
+      #    cluster: Githubactionstesting
+      #    wait-for-service-stability: true 
+#
       
