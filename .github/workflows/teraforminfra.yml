@@ -7,14 +7,9 @@ on:
 
 jobs:
   terraform:
+    runs-on: ubuntu-latest
     name: 'Terraform'
     environment: production
-    defaults:
-       run: 
-        shell: bash
-        working-directory: terraform
-
-    runs-on: ubuntu-latest
     steps: 
       - name: checkout
         uses: actions/checkout@v4  
