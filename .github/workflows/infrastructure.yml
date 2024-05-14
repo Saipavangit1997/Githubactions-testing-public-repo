@@ -33,7 +33,7 @@ jobs:
           unzip tflint_linux_amd64.zip
           mv tflint /usr/local/bin
           tflint --version
-          rm tflint.zip
+          rm tflint_linux_amd64.zip
 
       
 
