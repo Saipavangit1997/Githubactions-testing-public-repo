@@ -1,50 +1,50 @@
-name: 'Terraform'
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  terraform:
-    name: 'Terraform'
-    defaults:
-       run: 
-        shell: bash
-        working-directory: terraform
-
-    runs-on: ubuntu-latest
-    steps: 
-      - name: checkout
-        uses: actions/checkout@v4  
-      - name: 'Install pre-reqs'
-        run: |
-          curl -SL "https://releases.hashicorp.com/terraform/1.8.3/terraform_1.8.3_linux_amd64.zip" --output terraform.zip
-          unzip "terraform.zip"
-          mv terraform /usr/local/bin
-          terraform --version
-          rm terraform.zip  
-      - name: 'Install TFLint'
-        run: |
-          wget https://github.com/terraform-linters/tflint/releases/download/v0.51.1/tflint_linux_amd64.zip 
-          unzip tflint_linux_amd64.zip
-          mv tflint /usr/local/bin
-          tflint --version
-          rm tflint_linux_amd64.zip
-      
-      - name: Login to AWS
-        uses: aws-actions/configure-aws-credentials@v4
-        with: 
-         aws-region: us-east-1
-         aws-access-key-id: ${{ secrets.awsaccesskey }}
-         aws-secret-access-key: ${{ secrets.awssecretaccesskey }}  
-      - name: Terraform Initialize
-        run: terraform init
-      
-      - name: Terraform plan
-        run: terraform plan  
-      - name: Terraform apply
-        run: terraform apply -auto-approve
-        
-       
-  
+#name: 'Terraform'
+#
+#on:
+#  push:
+#    branches:
+#      - main
+#
+#jobs:
+#  terraform:
+#    name: 'Terraform'
+#    defaults:
+#       run: 
+#        shell: bash
+#        working-directory: terraform
+#
+#    runs-on: ubuntu-latest
+#    steps: 
+#      - name: checkout
+#        uses: actions/checkout@v4  
+#      - name: 'Install pre-reqs'
+#        run: |
+#          curl -SL "https://releases.hashicorp.com/terraform/1.8.3/terraform_1.8.3_linux_amd64.zip" --output terraform.zip
+#          unzip "terraform.zip"
+#          mv terraform /usr/local/bin
+#          terraform --version
+#          rm terraform.zip  
+#      - name: 'Install TFLint'
+#        run: |
+#          wget https://github.com/terraform-linters/tflint/releases/download/v0.51.1/tflint_linux_amd64.zip 
+#          unzip tflint_linux_amd64.zip
+#          mv tflint /usr/local/bin
+#          tflint --version
+#          rm tflint_linux_amd64.zip
+#      
+#      - name: Login to AWS
+#        uses: aws-actions/configure-aws-credentials@v4
+#        with: 
+#         aws-region: us-east-1
+#         aws-access-key-id: ${{ secrets.awsaccesskey }}
+#         aws-secret-access-key: ${{ secrets.awssecretaccesskey }}  
+#      - name: Terraform Initialize
+#        run: terraform init
+#      
+#      - name: Terraform plan
+#        run: terraform plan  
+#      - name: Terraform apply
+#        run: terraform apply -auto-approve
+#        
+#       
+#  

@@ -2,8 +2,8 @@ provider "aws" {
   region = var.aws_region
 }
 
-resource "aws_security_group" "dummy-sg" {
-  name        = "dummy sg for github actions testing"
+resource "aws_security_group" "dummy-sg1" {
+  name        = "dummy sg for github actions testing1"
   description = "Allow all inbound traffic"
   vpc_id      = var.vpc_id
 
