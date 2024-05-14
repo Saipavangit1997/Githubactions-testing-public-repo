@@ -1,0 +1,42 @@
+name: 'Terraform'
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    name: 'Terraform'
+
+   #defaults:
+   #   run: 
+   #    shell: bash
+   #    working-directory: terraform
+   #
+    steps: 
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: 'Install pre-reqs'
+        run: |
+          curl -SL "https://releases.hashicorp.com/terraform/1.8.3/terraform_1.8.3_linux_amd64.zip" --output terraform.zip
+          unzip "terraform.zip"
+          mv terraform /usr/local/bin
+          terraform --version
+          rm terraform.zip
+
+      - name: 'Install TFLint'
+        run: |
+          wget https://github.com/terraform-linters/tflint/releases/download/v0.51.1/tflint_linux_amd64.zip --output tflint.zip
+          unzip tflint.zip
+          mv tflint /usr/local/
+          tflint --version
+          rm tflint.zip
+
+      
+
+     
+
+  
