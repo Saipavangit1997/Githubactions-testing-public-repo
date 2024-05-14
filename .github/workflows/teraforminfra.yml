@@ -19,6 +19,12 @@ jobs:
           tf_actions_version: 0.14.8
           tf_actions_subcommand: 'fmt'
           tf_actions_working_dir: "./terraform"
+      - name: Login to AWS
+        uses: aws-actions/configure-aws-credentials@v4
+        with: 
+         aws-region: us-east-1
+         aws-access-key-id: ${{ secrets.awsaccesskey }}
+         aws-secret-access-key: ${{ secrets.awssecretaccesskey }}  
       - name: 'Terraform Init'
         uses: hashicorp/terraform-github-actions@master
         with:
